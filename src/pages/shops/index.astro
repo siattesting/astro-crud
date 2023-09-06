@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+const pageTitle = "Home Page"
+const shops = [
+    {id: 'shop01', title: 'Shop One', city: 'Dakar'},
+    {id: 'shop02', title: 'Shop Two', city: 'Accra'},
+    {id: 'shop03', title: 'Shop Three', city: 'Abidjan'},
+    {id: 'shop04', title: 'Shop Four', city: 'Ouagadougou'},
+]
+---
+<BaseLayout pageTitle={pageTitle}>
+    <section>
+        <div>
+            <h2>Shops</h2>
+            <div class="flex-container">
+                {shops.map((shop) => (
+                    <div class="flex-item">
+                        <h2>{shop.title}</h2>
+                        <p>{shop.city}</p>
+                        <small>{shop.id}</small>
+                    </div>))
+                }
+
+            </div>
+        </div>
+    </section>
+</BaseLayout>

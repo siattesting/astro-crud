@@ -1,0 +1,23 @@
+{
+  "name": "astro-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [
+    "Astro",
+    "PocketBase",
+    "learning to code"
+  ],
+  "author": "siattesting",
+  "license": "ISC",
+  "dependencies": {
+    "astro": "^3.0.8",
+    "pocketbase": "^0.18.0"
+  }
+}
