@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { validateEmail } from '../../lib/utils.js'
+const pageTitle = "Registration Page"
+
+const errors = { username: "", email: "", password: "", passwordConfirm: ""}
+const hasErrors = Object.values(errors).some(msg => msg)
+if (Astro.request.method === "POST") {
+    try {
+        const data = await Astro.request.formData()
+        const username = data.get("username")
+        const email = data.get("email")
+        const password = data.get("password")
+        const passwordConfirm = data.get("passwordConfirm")
+        if (typeof username !== "string" || username.length < 3) {
+            errors.username += "Please enter a username of at least 3 characters ";
+        }
+        if (typeof email !== "string" || !validateEmail(email)) {
+            errors.email += "Please enter a valid email such as example@domain.com. ";
+        }
+        if (typeof password !== "string" || password.length < 6) {
+            errors.password += "Passwords must be at leat 6 characters long ";
+        }
+        if (typeof passwordConfirm !== "string" || passwordConfirm !== password) {
+            errors.passwordConfirm += "Passwords and confrimation password must macth ";
+        }
+        // const hasErrors = Object.values(errors).some(msg => msg)
+        if (!hasErrors) {
+            // register ther user;
+            // Do something with the form data
+            // Try register the user
+
+            //redirect to login page
+            return Astro.redirect("/auth/login")
+
+        }
+        
+    } catch (error) {
+        if (error instanceof Error) {
+            console.error(error.message);
+        }
+    }
+}
+---
+<BaseLayout pageTitle={pageTitle}>
+    <div>
+        <form method="POST">
+            <div>
+                <label for="username">Username:
+                    <input type="text" name="username" required minlength="3" />
+                </label>
+                {errors.username && <span class="error">{errors.username}</span>}
+            </div>
+            <div>
+                <label for="email">Email:
+                    <input type="email" name="email" required />
+                </label>
+                {errors.email && <span class="error">{errors.email}</span>}
+            </div>
+            <div>
+                <label for="password">Password:
+                    <input type="password" name="password" required minlength="6" />
+                </label>
+                {errors.password && <span class="error">{errors.password}</span>}
+            </div>
+            <div>
+                <label for="passwordConfirm">Confirm Password:
+                    <input type="password" name="passwordConfirm" required minlength="6" />
+                </label>
+                {errors.passwordConfirm && <span class="error">{errors.passwordConfirm}</span>}
+            </div>
+            <button disabled={hasErrors}>Submit</button>
+        </form>
+    </div>
+</BaseLayout>
+
+<style>
+    .error {
+        color: tomato;
+        font-weight: bold;
+    }
+    input:invalid {
+        border: 2px solid red;
+    }
+</style>

@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
-const pageTitle = "Home Page"
+import { getShops } from './ShopsService'
+const pageTitle = "Shops Page"
+const locals = Astro.locals
+
+// Mock data for testing
 const shops = [
     {id: 'shop01', title: 'Shop One', city: 'Dakar'},
     {id: 'shop02', title: 'Shop Two', city: 'Accra'},
@@ -8,21 +12,22 @@ const shops = [
     {id: 'shop04', title: 'Shop Four', city: 'Ouagadougou'},
     {id: 'shop05', title: 'Shop Five', city: 'Dakar'},
 ]
+
+const PBshops  = await locals.pb.collection('shops').getFullList()
+// The above gives the same results as below
+const myshops = await getShops();
+
 ---
 <BaseLayout pageTitle={pageTitle}>
-    <section>
-        <div>
-            <h2>Shops</h2>
-            <div class="flex-container">
-                {shops.map((shop) => (
-                    <div class="flex-item">
-                        <h2>{shop.title}</h2>
-                        <p>{shop.city}</p>
-                        <small>{shop.id}</small>
-                    </div>))
-                }
-
-            </div>
-        </div>
-    </section>
+    <div class="flex-container">
+        {PBshops.map((shop) => (
+            <div class="flex-item">
+                <h2>{shop.title}</h2>
+                <p>{shop.city}</p>
+                <p>{shop.content}</p>
+                
+                <small>{shop.id}</small>
+            </div>))
+        }
+    </div>    
 </BaseLayout>
