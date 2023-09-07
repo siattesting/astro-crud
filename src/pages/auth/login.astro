@@ -25,7 +25,8 @@ if (Astro.request.method === "POST") {
             // Try logging in the user
             try {
                 // console.log("Data to submit: ", data)
-                await locals.pb.collection('users').authWithPassword({email, password})
+                await locals.pb.collection('users').authWithPassword( email, password)
+                // await POCKET.collection('users').authWithPassword( { email, password } )
 
             } catch (e) {
                 console.error(e.message)
@@ -33,7 +34,7 @@ if (Astro.request.method === "POST") {
             }
 
             //redirect to home page
-            return Astro.redirect("/index")
+            return Astro.redirect("/")
 
         }
         
