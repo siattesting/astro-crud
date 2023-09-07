@@ -13,9 +13,10 @@ export const onRequest = defineMiddleware(
       // get an up-to-date auth store state by verifying and refreshing the loaded auth model if any
       locals.pb.authStore.isValid &&
         (await locals.pb.collection("users").authRefresh());
-    } catch (_) {
+    } catch (err) {
       // clear the auth store on failed refresh
       locals.pb.authStore.clear();
+      console.error("Error: ", err);
     }
 
     const response = await next();

@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import { POCKET } from '../../lib/databases/PocketBase'
 import { validateEmail } from '../../lib/utils.js'
 const pageTitle = "Registration Page"
+const locals = Astro.locals
 
 const errors = { username: "", email: "", password: "", passwordConfirm: ""}
 const hasErrors = Object.values(errors).some(msg => msg)
@@ -29,6 +31,14 @@ if (Astro.request.method === "POST") {
             // register ther user;
             // Do something with the form data
             // Try register the user
+            try {
+                // console.log("Data to submit: ", data)
+                await locals.pb.collection('users').create({email, password, passwordConfirm})
+                // await POCKET.collection('users').create(email, password)
+            } catch (e) {
+                console.error(e.message)
+                throw e
+            }
 
             //redirect to login page
             return Astro.redirect("/auth/login")
@@ -43,8 +53,8 @@ if (Astro.request.method === "POST") {
 }
 ---
 <BaseLayout pageTitle={pageTitle}>
-    <div>
-        <form method="POST">
+    <div class="row">
+        <form method="POST" class="form">
             <div>
                 <label for="username">Username:
                     <input type="text" name="username" required minlength="3" />
