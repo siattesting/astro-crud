@@ -17,6 +17,7 @@
   "author": "siattesting",
   "license": "ISC",
   "dependencies": {
+    "@astrojs/svelte": "^4.0.1",
     "astro": "^3.0.8",
     "nanostores": "^0.9.3",
     "pocketbase": "^0.18.0"

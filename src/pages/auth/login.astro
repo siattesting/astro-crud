@@ -2,6 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { POCKET } from '../../lib/databases/PocketBase'
 import { validateEmail } from '../../lib/utils.js'
+import { isLoggedIn } from '../../lib/stores/users.ts'
+
+
 const pageTitle = "Login Page"
 const locals = Astro.locals
 
@@ -27,7 +30,8 @@ if (Astro.request.method === "POST") {
                 // console.log("Data to submit: ", data)
                 await locals.pb.collection('users').authWithPassword( email, password)
                 // await POCKET.collection('users').authWithPassword( { email, password } )
-
+                // Update the isLoggedIn status to tru in $lib/stores/user.ts
+                isLoggedIn.set(true)
             } catch (e) {
                 console.error(e.message)
                 throw e
