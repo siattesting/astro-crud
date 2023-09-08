@@ -31,7 +31,7 @@ export async function registerWithPassowrd(
   });
   addInStorage(record);
   // (optional) send an email verification request
-  await POCKET.collection('users').requestVerification('test@example.com');
+  await POCKET.collection('users').requestVerification(email);
 }
 
 export function logout() {
