@@ -1,4 +1,4 @@
 import { atom } from 'nanostores';
 
-export const $user = atom({});
+export const $currentUser = atom({});
 export const isLoggedIn = atom(false);

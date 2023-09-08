@@ -2,7 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { POCKET } from '../../lib/databases/PocketBase'
 import { validateEmail } from '../../lib/utils.js'
-import { isLoggedIn } from '../../lib/stores/users.ts'
+import { isLoggedIn, $currentUser } from '../../lib/stores/users.ts'
+import { loginWithPassword } from './AuthService'
 
 
 const pageTitle = "Login Page"
@@ -28,10 +29,16 @@ if (Astro.request.method === "POST") {
             // Try logging in the user
             try {
                 // console.log("Data to submit: ", data)
-                await locals.pb.collection('users').authWithPassword( email, password)
-                // await POCKET.collection('users').authWithPassword( { email, password } )
+                const { token, record } = await locals.pb.collection('users').authWithPassword( email, password)
+                // const { token, record } = await POCKET.collection('users').authWithPassword( email, password  )
                 // Update the isLoggedIn status to tru in $lib/stores/user.ts
+                // await loginWithPassword(email, password)
                 isLoggedIn.set(true)
+                $currentUser.set(locals.pb.authStore.model)
+                console.log("TOKEN: ", token)
+                console.log("Auth Record: " ,record)
+                // return new Response('Success...');
+
             } catch (e) {
                 console.error(e.message)
                 throw e

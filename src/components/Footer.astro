@@ -1,6 +1,12 @@
+---
+import { $currentUser } from "../lib/stores/users";
+console.log($currentUser)
+
+---
+
 <footer class="footer">
     <div>
-        Copyright &copy; {new Date().getFullYear()} - @siattesting
+        Copyright &copy; {new Date().getFullYear()} - @siattesting - You are {$currentUser.value}
     </div>
 </footer>
 <style>

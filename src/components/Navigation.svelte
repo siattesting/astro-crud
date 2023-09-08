@@ -11,6 +11,8 @@
     <a href="/auth/logout">Logout</a>
     {#if $isLoggedIn}
     <button>You are logged in</button>
+    {:else}
+    <button>You are NOT logged in</button>
     {/if}
     
 </nav>
