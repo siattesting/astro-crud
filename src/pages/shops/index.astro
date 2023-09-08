@@ -22,11 +22,12 @@ const myshops = await getShops();
     <div class="flex-container">
         {PBshops.map((shop) => (
             <div class="flex-item">
-                <h2>{shop.title}</h2>
-                <p>{shop.city}</p>
-                <p>{shop.content}</p>
-                
-                <small>{shop.id}</small>
+                <div>
+                    <h2>{shop.title}</h2>
+                    <p>{shop.city}</p>
+                    <p>{shop.content}</p>
+                    <small>{shop.id}</small>
+                </div>
             </div>))
         }
     </div>    

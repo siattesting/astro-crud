@@ -49,13 +49,13 @@ if (Astro.request.method === "POST") {
     <div class="row">
         <form method="POST" class="form">
 
-            <div>
+            <div class="form-field">
                 <label for="email">Email:
                     <input type="email" name="email" required />
                 </label>
                 {errors.email && <span class="error">{errors.email}</span>}
             </div>
-            <div>
+            <div class="form-field">
                 <label for="password">Password:
                     <input type="password" name="password" required minlength="6" />
                 </label>
@@ -75,4 +75,12 @@ if (Astro.request.method === "POST") {
     input:invalid {
         border: 2px solid red;
     }
+    .form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+    }
+
+    
 </style>

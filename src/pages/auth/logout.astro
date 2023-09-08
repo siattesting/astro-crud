@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { POCKET } from '../../lib/databases/PocketBase'
+const pageTitle = "Logout Page"
+const locals = Astro.locals
+if (Astro.request.method === "POST") {
+    try {
+        await locals.pb.authStore.clear();
+        
+        
+    } catch (error) {
+        if (error instanceof Error) {
+            console.error(error.message);
+        }
+    }
+    return Astro.redirect('/')
+}
+---
+<BaseLayout pageTitle={pageTitle}>
+
+<div>
+    <form method="POST">
+        <button type="submit">Logout</button>
+    </form>
+    
+</div>
+</BaseLayout>
