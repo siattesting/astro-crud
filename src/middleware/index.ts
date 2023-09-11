@@ -9,12 +9,13 @@ export const onRequest = defineMiddleware(
     // load the store data from the request cookie string
     locals.pb.authStore.loadFromCookie(request.headers.get('cookie') || '');
 
-    locals.user = locals.pb.authStore.model;
+    // locals.currentUser = locals.pb.authStore.model;
 
     try {
       // get an up-to-date auth store state by verifying and refreshing the loaded auth model if any
       locals.pb.authStore.isValid &&
         (await locals.pb.collection('users').authRefresh());
+      locals.user = locals.pb.authStore.model;
     } catch (err) {
       // clear the auth store on failed refresh
       locals.pb.authStore.clear();

@@ -2,9 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { POCKET } from '../../lib/databases/PocketBase'
 import { validateEmail } from '../../lib/utils.js'
-import { isLoggedIn, $currentUser } from '../../lib/stores/users.ts'
-import { loginWithPassword } from './AuthService'
-
+import { isLoggedIn, currentUser } from '../../lib/stores/users.ts'
 
 const pageTitle = "Login Page"
 const locals = Astro.locals
@@ -32,11 +30,13 @@ if (Astro.request.method === "POST") {
                 const { token, record } = await locals.pb.collection('users').authWithPassword( email, password)
                 // const { token, record } = await POCKET.collection('users').authWithPassword( email, password  )
                 // Update the isLoggedIn status to tru in $lib/stores/user.ts
-                // await loginWithPassword(email, password)
                 isLoggedIn.set(true)
-                $currentUser.set(locals.pb.authStore.model)
-                console.log("TOKEN: ", token)
-                console.log("Auth Record: " ,record)
+                // currentUser.set(record)
+                
+                currentUser.set(locals.pb.authStore.model)
+                // console.log("TOKEN: ", token)
+                // console.log("Auth Record: " ,record)
+                // console.log('Current user: ', currentUser)
                 // return new Response('Success...');
 
             } catch (e) {
@@ -73,7 +73,7 @@ if (Astro.request.method === "POST") {
                 {errors.password && <span class="error">{errors.password}</span>}
             </div>
 
-            <button disabled={hasErrors}>Submit</button>
+            <input type="submit" value="Submit" disabled={hasErrors} />
         </form>
     </div>
 </BaseLayout>
@@ -86,11 +86,37 @@ if (Astro.request.method === "POST") {
     input:invalid {
         border: 2px solid red;
     }
-    .form {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 50vh;
+    
+    form {
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        margin-bottom: 15px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
     }
 
     

@@ -1,3 +1,7 @@
+---
+const data = Astro.locals
+const currentUser = data.user?.email
+---
 <nav class="nav-links ">
     <a href="/">Home</a>
     <a href="/shops">Shops</a>
@@ -5,6 +9,7 @@
     <a href="/auth/register">Register</a>
     <a href="/auth/login">Login</a>
     <a href="/auth/logout">Logout</a>
+    {currentUser && <button>{currentUser}</button>}
 </nav>
 
 <style>

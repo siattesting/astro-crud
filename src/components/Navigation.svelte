@@ -1,5 +1,6 @@
 <script>
     import { isLoggedIn } from '../lib/stores/users.ts'
+    import { currentUser } from '../lib/stores/users.ts';
 
 </script>
 <nav class="nav-links ">
@@ -9,8 +10,8 @@
     <a href="/auth/register">Register</a>
     <a href="/auth/login">Login</a>
     <a href="/auth/logout">Logout</a>
-    {#if $isLoggedIn}
-    <button>You are logged in</button>
+    {#if $currentUser}
+    <button>You are logged in <pre>{JSON.stringify($currentUser.email)}</pre> </button>
     {:else}
     <button>You are NOT logged in</button>
     {/if}
