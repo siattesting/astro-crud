@@ -2,6 +2,17 @@
   box-sizing: border-box;
 }
 
+html {
+  font-family: 'Lucida Sans', sans-serif;
+  background-color: #f1f5f9;
+}
+
+body {
+  margin: 0 auto;
+  width: 100%;
+  min-width: 80ch;
+  padding: 1rem;
+}
 .row::after {
   content: '';
   clear: both;
@@ -13,14 +24,10 @@
   padding: 15px;
 }
 
-html {
-  font-family: 'Lucida Sans', sans-serif;
-}
-
 .header {
   background-color: #9933cc;
   color: #ffffff;
-  padding: 15px;
+  padding: 10px;
 }
 
 .menu ul {
@@ -58,9 +65,47 @@ html {
   padding: 15px;
 }
 
+.nav-links {
+  width: 100%;
+  top: 0;
+  left: 48px;
+  display: none;
+  background-color: #333;
+  margin: 0;
+}
+.nav-links a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  padding: 14px 20px;
+  text-align: center;
+}
+.nav-links a:hover,
+.nav-links a:focus {
+  background-color: #ddd;
+  color: black;
+}
+
 /* For mobile phones: */
 [class*='col-'] {
   width: 100%;
+}
+.hamburger {
+  padding-right: 20px;
+  cursor: pointer;
+}
+.hamburger .line {
+  display: block;
+  width: 40px;
+  height: 5px;
+  margin-bottom: 10px;
+  background-color: #ff9776;
+}
+.expanded {
+  display: unset;
 }
 
 @media only screen and (min-width: 600px) {
@@ -101,6 +146,20 @@ html {
   .col-s-12 {
     width: 100%;
   }
+  .nav-links {
+    margin-left: 5em;
+    display: block;
+    position: static;
+    width: auto;
+    background: none;
+  }
+  .nav-links a {
+    display: inline-block;
+    padding: 15px 20px;
+  }
+  .hamburger {
+    display: none;
+  }
 }
 @media only screen and (min-width: 768px) {
   /* For desktop: */
@@ -140,4 +199,26 @@ html {
   .col-12 {
     width: 100%;
   }
+  .nav-links {
+    margin-left: 5em;
+    display: block;
+    position: static;
+    width: auto;
+    background: none;
+  }
+  .nav-links a {
+    display: inline-block;
+    padding: 15px 20px;
+  }
+  .hamburger {
+    display: none;
+  }
+}
+
+html .dark {
+  background-color: #0d0950;
+  color: #fff;
+}
+.dark .nav-links a {
+  color: #fff;
 }

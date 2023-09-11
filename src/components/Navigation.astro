@@ -6,9 +6,11 @@ const currentUser = data.user?.email
     <a href="/">Home</a>
     <a href="/shops">Shops</a>
     <a href="/about">About</a>
+    {!currentUser && 
     <a href="/auth/register">Register</a>
     <a href="/auth/login">Login</a>
-    <a href="/auth/logout">Logout</a>
+    }
+    { currentUser && <a href="/auth/logout">Logout</a>}
     {currentUser && <button>{currentUser}</button>}
 </nav>
 
