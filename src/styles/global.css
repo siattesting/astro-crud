@@ -2,20 +2,20 @@
   box-sizing: border-box;
 }
 body {
-  font-family: "Lucida Sans", sans-serif;
+  font-family: 'Lucida Sans', sans-serif;
   max-width: 80ch;
   margin: 0 auto;
   padding: 1rem;
   line-height: 1.5;
 }
 .row::after {
-  content: "";
+  content: '';
   clear: both;
   display: table;
 }
 
 /* For mobile phones: */
-[class*="col-"] {
+[class*='col-'] {
   width: 100%;
   float: left;
   padding: 15px;
@@ -59,6 +59,9 @@ body {
   .col-s-12 {
     width: 100%;
   }
+}
+.expanded {
+  display: unset;
 }
 
 @media only screen and (min-width: 768px) {
