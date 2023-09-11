@@ -1,7 +1,9 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import '../styles/global.css'
-import Header from '../components/Header.astro'
+
+import '../styles/app.css'
+import Hamburger from '../components/Hamburger.astro'
+import Navigation from "../components/Navigation.svelte";
 import Footer from '../components/Footer.astro'
 const { pageTitle } = Astro.props
 ---
@@ -15,13 +17,42 @@ const { pageTitle } = Astro.props
     <ViewTransitions />
 </head>
 <body>
-    <Header />
-      
-    <article class="main">
-        <div><h1>{pageTitle}</h1></div>  
-        <slot />
-    </article>
-    <Footer />
+    <div class="header">
+        <Hamburger />
+        <Navigation /> 
+    </div>
+    <div class="row">
+        <div class="col-3 col-s-3 menu">
+            <ul>
+                <li>to do</li>
+                <li>to do</li>
+                <li>to do</li>
+                <li>to do</li>
+            </ul>
+        </div>
+
+        <div class="col-6 col-s-9">
+            <slot />
+        </div>
+        <div class="col-3 col-s-12">
+            <div class="aside">
+                <h2>What?</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum placeat error mollitia, iusto et voluptatum velit voluptatem omnis maxime facilis!</p>
+                <h2>Where?</h2>
+                <p>Expedita ipsum obcaecati aliquid excepturi corporis sint ut aperiam est labore aspernatur explicabo magnam quisquam dignissimos reiciendis nemo veniam, vel saepe blanditiis!</p>
+                <h2>How?</h2>
+                <p>Hic, commodi dignissimos nesciunt voluptate veritatis magnam laboriosam alias. Voluptates similique assumenda sit, modi sint molestias vitae maiores nostrum rem a officia ea necessitatibus. Omnis eius similique deserunt minima dignissimos, esse adipisci?</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <Footer />
+    </div>
+    
+    <script>
+        import "../scripts//menu.js"
+    </script>
     
 </body>
 </html>

@@ -3,6 +3,7 @@
 }
 body {
   font-family: 'Lucida Sans', sans-serif;
+  width: 100%;
   max-width: 80ch;
   margin: 0 auto;
   padding: 1rem;
@@ -19,6 +20,45 @@ body {
   width: 100%;
   float: left;
   padding: 15px;
+}
+
+.nav-links {
+  width: 100%;
+  display: none;
+  top: 0;
+  left: 48px;
+  background-color: #333;
+  /* position: fixed; */
+  /* position: -webkit-sticky Safari; */
+  overflow: hidden;
+}
+.nav-links a {
+  display: block;
+  text-align: center;
+  color: white;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+.nav-links a:hover,
+.nav-links a:focus {
+  background-color: #ddd;
+  color: black;
+}
+
+.expanded {
+  display: unset;
+}
+
+.hamburger {
+  padding-right: 20px;
+  cursor: pointer;
+}
+.hamburger .line {
+  display: block;
+  width: 40px;
+  height: px;
+  margin-bottom: 10px;
+  background-color: #ff9776;
 }
 
 @media only screen and (min-width: 600px) {
@@ -59,9 +99,21 @@ body {
   .col-s-12 {
     width: 100%;
   }
-}
-.expanded {
-  display: unset;
+
+  .hamburger {
+    display: none;
+  }
+  .nav-links {
+    margin-left: 5px;
+    display: block;
+    position: static;
+    width: auto;
+    background: none;
+  }
+  .nav-links a {
+    display: inline-block;
+    padding: 15px 20px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -101,5 +153,20 @@ body {
   }
   .col-12 {
     width: 100%;
+  }
+
+  .hamburger {
+    display: none;
+  }
+  .nav-links {
+    margin-left: 5px;
+    display: block;
+    position: static;
+    width: auto;
+    background: none;
+  }
+  .nav-links a {
+    display: inline-block;
+    padding: 15px 20px;
   }
 }

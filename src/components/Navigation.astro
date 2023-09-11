@@ -12,28 +12,3 @@ const currentUser = data.user?.email
     {currentUser && <button>{currentUser}</button>}
 </nav>
 
-<style>
-    .nav-links {
-        width: 100%;
-        display: flex;
-        top: 0;
-        background-color: #333;
-        position: fixed;
-        position: -webkit-sticky /* Safari */;
-        overflow: hidden;
-    }
-    .nav-links  a {
-        color: white;
-        padding: 14px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: block;
-
-
-    }
-    .nav-links  a:hover, .nav-links  a:focus {
-        background-color: #ddd;
-        color: black;
-    }
-
-</style>
