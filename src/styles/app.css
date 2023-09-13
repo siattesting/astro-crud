@@ -7,16 +7,17 @@ html {
   background-color: #f1f5f9;
 }
 
+.row::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
 body {
   margin: 0 auto;
   width: 100%;
   min-width: 80ch;
   padding: 1rem;
-}
-.row::after {
-  content: '';
-  clear: both;
-  display: table;
 }
 
 [class*='col-'] {
