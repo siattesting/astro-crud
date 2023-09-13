@@ -17,6 +17,7 @@
   "author": "siattesting",
   "license": "ISC",
   "dependencies": {
+    "@astrojs/netlify": "^3.0.1",
     "@astrojs/node": "^6.0.0",
     "@astrojs/svelte": "^4.0.1",
     "@astrojs/vercel": "^4.0.5",
