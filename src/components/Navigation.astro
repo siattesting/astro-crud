@@ -2,7 +2,7 @@
 const data = Astro.locals
 const currentUser = data.user?.email
 ---
-<nav class="nav-links ">
+<nav class="top-nav ">
     <a href="/">Home</a>
     <a href="/shops">Shops</a>
     <a href="/about">About</a>
@@ -14,3 +14,23 @@ const currentUser = data.user?.email
     {currentUser && <button>{currentUser}</button>}
 </nav>
 
+<style>
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+    .topnav a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    @media screen and (max-width: 600px) {
+        .topnav a {
+            float: none;
+            width: 100%;
+        }    
+    }
+</style>

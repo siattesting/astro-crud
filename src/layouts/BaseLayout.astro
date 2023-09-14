@@ -16,11 +16,11 @@ const { pageTitle } = Astro.props
     <title>{pageTitle}</title>
     <ViewTransitions />
 </head>
-<body>
-    <div class="header">
+<body class="page-wrap">
+    <header class="">
         <Hamburger />
         <Navigation /> 
-    </div>
+    </header>
     <div class="row">
         <div class="col-3 col-s-3 menu">
             <ul>
@@ -47,9 +47,9 @@ const { pageTitle } = Astro.props
         </div>
     </div>
 
-    <div class="footer">
+    <footer class="footer">
         <Footer />
-    </div>
+    </footer>
     
     <script>
         import "../scripts/menu.js"
@@ -58,5 +58,4 @@ const { pageTitle } = Astro.props
 </body>
 </html>
 
-
-
+    
